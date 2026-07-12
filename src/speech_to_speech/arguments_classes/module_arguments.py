@@ -21,11 +21,19 @@ class ModuleArguments:
         },
     )
     stt: Optional[
-        Literal["whisper", "whisper-mlx", "mlx-audio-whisper", "faster-whisper", "parakeet-tdt", "paraformer"]
+        Literal[
+            "whisper",
+            "whisper-mlx",
+            "mlx-audio-whisper",
+            "faster-whisper",
+            "parakeet-tdt",
+            "paraformer",
+            "qwen3-asr",
+        ]
     ] = field(
         default="parakeet-tdt",
         metadata={
-            "help": "The STT to use. Either 'whisper', 'whisper-mlx', 'mlx-audio-whisper', 'faster-whisper', 'parakeet-tdt', or 'paraformer'. Default is 'parakeet-tdt'."
+            "help": "The STT to use. Either 'whisper', 'whisper-mlx', 'mlx-audio-whisper', 'faster-whisper', 'parakeet-tdt', 'paraformer', or 'qwen3-asr'. Default is 'parakeet-tdt'."
         },
     )
     llm_backend: Optional[Literal["transformers", "mlx-lm", "responses-api", "chat-completions"]] = field(
@@ -35,10 +43,10 @@ class ModuleArguments:
             "'chat-completions' (OpenAI-compatible /v1/chat/completions). Default is 'responses-api'."
         },
     )
-    tts: Optional[Literal["chatTTS", "facebookMMS", "pocket", "kokoro", "qwen3"]] = field(
+    tts: Optional[Literal["chatTTS", "facebookMMS", "pocket", "kokoro", "qwen3", "indic-qwen3"]] = field(
         default="qwen3",
         metadata={
-            "help": "The TTS to use. Either 'chatTTS', 'facebookMMS', 'pocket', 'kokoro', or 'qwen3'. Default is 'qwen3'."
+            "help": "The TTS to use. Either 'chatTTS', 'facebookMMS', 'pocket', 'kokoro', 'qwen3', or 'indic-qwen3'. Default is 'qwen3'."
         },
     )
     log_level: str = field(

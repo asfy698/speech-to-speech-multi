@@ -1,0 +1,73 @@
+---
+name: speech-to-speech-dev
+
+services:
+  llama:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    gpus: all
+    command:
+      - -hf
+      - ggml-org/gemma-4-E4B-it-GGUF
+      - -np
+      - "2"
+      - -c
+      - "65536"
+      - -fa
+      - "on"
+      - --swa-full
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+    ports:
+      - 8080:8080/tcp
+    volumes:
+      - ./cache-dev/:/root/.cache/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+      start_period: 240s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]
+
+  dev:
+    image: speech-to-speech-multi-dev
+    depends_on:
+      llama:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - PULSE_SERVER=host.docker.internal:4713
+      - PYTHONUNBUFFERED=1
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    working_dir: /usr/src/app
+    command:
+      - sleep
+      - infinity
+    ports:
+      - 8765:8765/tcp
+    volumes:
+      - ./:/usr/src/app
+      - dev-venv:/usr/src/app/.venv
+      - ./cache-dev/:/root/.cache/
+    gpus: all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]
+
+volumes:
+  dev-venv:

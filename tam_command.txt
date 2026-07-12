@@ -1,0 +1,12 @@
+cd C:\Users\assha\OneDrive\Documents\speech-to-speech-main\speech-to-speech-multi
+
+$env:S2S_STT="qwen3-asr"
+$env:S2S_TTS="indic-qwen3"
+$env:QWEN3_ASR_MODEL_NAME="osmapi/tamil-asr-qwen3"
+$env:QWEN3_ASR_LANGUAGE_CODE="ta"
+$env:INDIC_QWEN3_TTS_MODEL_NAME="aguken-ai/Qwen3-TTS-0.6B-LoRA-Finetuned-Indic-Multilingual"
+$env:INDIC_QWEN3_TTS_ADAPTER="tamil_female"
+$env:INDIC_QWEN3_TTS_LANGUAGE="Tamil"
+$env:S2S_INIT_CHAT_PROMPT="You are a helpful assistant. If the user speaks Tamil, reply in Tamil. Keep responses short and conversational."
+
+docker compose up -d --build pipeline

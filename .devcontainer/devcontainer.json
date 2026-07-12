@@ -1,0 +1,17 @@
+{
+  "name": "speech-to-speech-dev",
+  "dockerComposeFile": "../docker-compose.dev.yml",
+  "runServices": ["llama", "dev"],
+  "service": "dev",
+  "workspaceFolder": "/usr/src/app",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": false,
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/src/app/.venv/bin/python",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

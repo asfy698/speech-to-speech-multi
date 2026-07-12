@@ -1,0 +1,89 @@
+---
+name: speech-to-speech-english
+
+services:
+  llama:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    gpus: all
+    command:
+      - -hf
+      - ggml-org/gemma-4-E4B-it-GGUF
+      - -np
+      - "2"
+      - -c
+      - "65536"
+      - -fa
+      - "on"
+      - --swa-full
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+    ports:
+      - 8080:8080/tcp
+    volumes:
+      - ./cache-english/:/root/.cache/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+      start_period: 240s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]
+
+  pipeline:
+    image: speech-to-speech-multi-pipeline-english
+    depends_on:
+      llama:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PULSE_SERVER=host.docker.internal:4713
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command:
+      - speech-to-speech
+      - --mode
+      - realtime
+      - --ws_host
+      - 0.0.0.0
+      - --ws_port
+      - "8765"
+      - --llm_backend
+      - responses-api
+      - --model_name
+      - ggml-org/gemma-4-E4B-it-GGUF
+      - --responses_api_base_url
+      - http://llama:8080/v1
+      - --responses_api_api_key
+      - ""
+      - --init_chat_role
+      - system
+      - --init_chat_prompt
+      - You are a helpful assistant. Keep responses short and conversational.
+      - --stt
+      - parakeet-tdt
+      - --tts
+      - qwen3
+      - --qwen3_tts_language
+      - auto
+    ports:
+      - 8765:8765/tcp
+    volumes:
+      - ./cache-english/:/root/.cache/
+    gpus: all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]
