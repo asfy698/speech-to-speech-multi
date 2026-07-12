@@ -1034,12 +1034,22 @@ def get_tts_handler(
     elif module_kwargs.tts == "indic-qwen3":
         from speech_to_speech.TTS.indic_qwen3_tts_handler import IndicQwen3TTSHandler
 
+        setup_kwargs = {
+            "model_name": indic_qwen3_tts_handler_kwargs.indic_qwen3_tts_model_name,
+            "adapter": indic_qwen3_tts_handler_kwargs.indic_qwen3_tts_adapter,
+            "language": indic_qwen3_tts_handler_kwargs.indic_qwen3_tts_language,
+            "device": indic_qwen3_tts_handler_kwargs.indic_qwen3_tts_device,
+            "dtype": indic_qwen3_tts_handler_kwargs.indic_qwen3_tts_dtype,
+            "attn_implementation": indic_qwen3_tts_handler_kwargs.indic_qwen3_tts_attn_implementation,
+            "lora_scale": indic_qwen3_tts_handler_kwargs.indic_qwen3_tts_lora_scale,
+            "output_speed": indic_qwen3_tts_handler_kwargs.indic_qwen3_tts_output_speed,
+        }
         return IndicQwen3TTSHandler(
             stop_event,
             queue_in=lm_response_queue,
             queue_out=send_audio_chunks_queue,
             setup_args=(should_listen,),
-            setup_kwargs=vars(indic_qwen3_tts_handler_kwargs),
+            setup_kwargs=setup_kwargs,
         )
     else:
         raise ValueError("The TTS should be either chatTTS, facebookMMS, pocket, kokoro, qwen3, or indic-qwen3")
