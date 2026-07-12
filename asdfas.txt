@@ -1,0 +1,45 @@
+pipeline-1  | /usr/src/app/.venv/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1169: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greatly increasing memory usage. To compact weights again call flatten_parameters(). (Triggered internally at /pytorch/aten/src/ATen/native/cudnn/RNN.cpp:1479.)
+
+
+
+# Check what's available
+python scripts/benchmark_stt.py --help
+
+# Benchmark Parakeet TDT
+python scripts/benchmark_stt.py --handler parakeet-tdt --iterations 5
+
+# Compare STT engines
+python scripts/benchmark_stt.py --handlers parakeet-tdt whisper --iterations 3
+
+
+
+
+
+
+# Run the pipeline with profiling/monitoring
+python -m cProfile -s cumulative src/speech_to_speech/s2s_pipeline.py \
+    --mode local \
+    --stt parakeet-tdt \
+    --llm_backend transformers \
+    --tts qwen3
+
+
+
+
+
+
+import torch
+import psutil
+
+# Monitor while running
+print(f"GPU Memory: {torch.cuda.memory_allocated() / 1e9:.2f} GB")
+print(f"CPU Usage: {psutil.cpu_percent()}%")
+print(f"RAM Usage: {psutil.virtual_memory().percent}%")
+
+
+
+
+# Monitor Docker container performance
+docker stats speech-to-speech-main-pipeline-1
+
+# Shows: CPU%, Memory%, Network I/O, GPU usage

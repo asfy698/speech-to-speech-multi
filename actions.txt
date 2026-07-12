@@ -1,0 +1,87 @@
+Step 200: USER_INPUT -> <USER_REQUEST> 1. no plan does not mention py files format the plan md and structure it with a stand
+Step 202: write_to_file -> future_updates_plan.md"
+Step 202: write_to_file -> workflow_architecture.md"
+Step 202: write_to_file -> orchestrator_architecture.md"
+Step 208: USER_INPUT -> <USER_REQUEST> 1. check flows 2. test cases need to test every component individually and report mak
+Step 210: write_to_file -> high_level_workflow.md"
+Step 210: write_to_file -> low_level_workflow.md"
+Step 210: write_to_file -> low_level_blueprint.md"
+Step 210: write_to_file -> workflow_architecture.md"
+Step 210: write_to_file -> orchestrator_architecture.md"
+Step 218: USER_INPUT -> <USER_REQUEST> logger will check latency software hardware and component level logs and test and log
+Step 220: write_to_file -> low_level_blueprint.md"
+Step 224: USER_INPUT -> <USER_REQUEST> check feasibility before adding have a plan  C. Model KPIs  These allow comparison ac
+Step 226: write_to_file -> feasibility_analysis.md"
+Step 226: write_to_file -> low_level_blueprint.md"
+Step 231: USER_INPUT -> <USER_REQUEST> some kpi are for tests we will have sample data and preset recordings for testing wit
+Step 233: write_to_file -> feasibility_analysis.md"
+Step 233: write_to_file -> orchestrator_architecture.md"
+Step 233: write_to_file -> kpi_checklist.md"
+Step 238: run_command -> "Remove-Item \"C:\\Users\\assha\\OneDrive\\Desktop\\speech-to-speech-main\\mypersonal project sample files\\past codes from diff attempts\\plan\\*.md\" -Force"
+Step 242: USER_INPUT -> <USER_REQUEST> generate  work flow (real world usecases with role based interactions with serial num
+Step 244: write_to_file -> usecase_workflows.md"
+Step 244: write_to_file -> pipeline_perspectives.md"
+Step 244: write_to_file -> api_routes_events.md"
+Step 250: USER_INPUT -> <USER_REQUEST> can we improvize on workflows since the tool usege for time finding seems too over si
+Step 252: write_to_file -> usecase_workflows.md"
+Step 252: write_to_file -> pipeline_perspectives.md"
+Step 252: write_to_file -> api_routes_events.md"
+Step 257: write_to_file -> low_level_blueprint.md"
+Step 261: USER_INPUT -> <USER_REQUEST> the workflow is missing things how does the model know time there should be a tool us
+Step 263: run_command -> "Rename-Item \"current_iteration_plan.md\" \"1a_current_iteration_plan.md\"\nRename-Item \"future_updates_plan.md\" \"1b_future_updates_plan.md\"\nRename-Item \"feasibility_analysis.md\" \"1c_feasibility_analysis.md\"\nRename-Item \"orchestrator_architecture.md\" \"2a_master_orchestrator_architecture.md\"\nRename-Item \"workflow_architecture.md\" \"2b_workflow_architecture.md\"\nRename-Item \"high_level_workflow.md\" \"3a_high_level_workflow.md\"\nRename-Item \"usecase_workflows.md\" \"4a_usecase_workflows.md\"\nRename-Item \"pipeline_perspectives.md\" \"4b_pipeline_perspectives.md\"\nRename-Item \"api_routes_events.md\" \"4c_api_routes_events.md\"\nRename-Item \"low_level_workflow.md\" \"5a_low_level_workflow.md\"\nRename-Item \"low_level_blueprint.md\" \"5b_low_level_blueprint.md\""
+Step 267: write_to_file -> 3a_high_level_workflow.md"
+Step 267: write_to_file -> 4a_usecase_workflows.md"
+Step 267: write_to_file -> 4b_pipeline_perspectives.md"
+Step 274: USER_INPUT -> <USER_REQUEST> think through this again "I'm now prioritizing the sequence of software design steps 
+Step 276: run_command -> "Rename-Item \"4a_usecase_workflows.md\" \"1a_usecase_workflows.md\"\nRename-Item \"1c_feasibility_analysis.md\" \"1b_feasibility_analysis.md\"\nRename-Item \"1a_current_iteration_plan.md\" \"1c_current_iteration_plan.md\"\nRename-Item \"1b_future_updates_plan.md\" \"1d_future_updates_plan.md\"\nRename-Item \"3a_high_level_workflow.md\" \"2a_high_level_architecture.md\"\nRename-Item \"4c_api_routes_events.md\" \"3a_api_routes_events.md\"\nRename-Item \"4b_pipeline_perspectives.md\" \"4a_pipeline_perspectives.md\"\nRename-Item \"2b_workflow_architecture.md\" \"4b_workflow_architecture_summary.md\"\nRename-Item \"2a_master_orchestrator_architecture.md\" \"5c_master_orchestrator_architecture.md\""
+Step 279: run_command -> "Rename-Item \"4a_usecase_workflows.md\" \"2a_usecase_workflows.md\"\nRename-Item \"4c_api_routes_events.md\" \"3a_api_routes_events.md\"\nRename-Item \"4b_pipeline_perspectives.md\" \"3b_pipeline_perspectives.md\"\nRename-Item \"3a_high_level_workflow.md\" \"4a_high_level_architecture.md\"\nRename-Item \"2b_workflow_architecture.md\" \"4b_workflow_architecture_summary.md\"\nRename-Item \"2a_master_orchestrator_architecture.md\" \"5a_master_orchestrator_architecture.md\"\nRename-Item \"5a_low_level_workflow.md\" \"6a_low_level_workflow.md\"\nRename-Item \"5b_low_level_blueprint.md\" \"6b_low_level_blueprint.md\""
+Step 283: USER_INPUT -> <USER_REQUEST> check this and find issues 1. plan 2. usecase_work 3. work flow  4. feasibility with 
+Step 286: USER_INPUT -> <USER_REQUEST> optimizations posisble or proceed? </USER_REQUEST> <ADDITIONAL_METADATA> The current 
+Step 291: run_command -> "Rename-Item \"4a_usecase_workflows.md\" \"2_usecase_workflows.md\"\nRename-Item \"1c_feasibility_analysis.md\" \"4_feasibility_analysis.md\"\nRename-Item \"1a_current_iteration_plan.md\" \"5a_current_iteration_plan.md\"\nRename-Item \"1b_future_updates_plan.md\" \"5b_future_updates_plan.md\"\nRename-Item \"3a_high_level_workflow.md\" \"6a_high_level_architecture.md\"\nRename-Item \"4c_api_routes_events.md\" \"6b_api_routes_events.md\"\nRename-Item \"4b_pipeline_perspectives.md\" \"6c_pipeline_perspectives.md\"\nRename-Item \"2b_workflow_architecture.md\" \"7a_workflow_architecture_summary.md\"\nRename-Item \"2a_master_orchestrator_architecture.md\" \"7b_master_orchestrator_architecture.md\"\nRename-Item \"5a_low_level_workflow.md\" \"8_low_level_workflow.md\"\nRename-Item \"5b_low_level_blueprint.md\" \"9_low_level_blueprint.md\""
+Step 295: USER_INPUT -> <USER_REQUEST> 3 is missing ig check  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time i
+Step 300: write_to_file -> 2_usecase_definitions.md"
+Step 300: write_to_file -> 3_operational_workflows.md"
+Step 300: run_command -> "Remove-Item \"2_usecase_workflows.md\" -Force"
+Step 306: USER_INPUT -> <USER_REQUEST> /goal check loop by checking chunk by chunk in ascending order of number pick 1 part 
+Step 311: write_to_file -> implementation_plan.md"
+Step 317: write_to_file -> 2_usecase_definitions.md"
+Step 317: write_to_file -> 3_operational_workflows.md"
+Step 317: write_to_file -> 4_feasibility_analysis.md"
+Step 322: write_to_file -> 5a_current_iteration_plan.md"
+Step 322: write_to_file -> 6a_high_level_architecture.md"
+Step 322: write_to_file -> 6b_api_routes_events.md"
+Step 322: write_to_file -> 6c_pipeline_perspectives.md"
+Step 328: write_to_file -> 7a_workflow_architecture_summary.md"
+Step 328: write_to_file -> 7b_master_orchestrator_architecture.md"
+Step 328: write_to_file -> 8_low_level_workflow.md"
+Step 328: write_to_file -> 9_low_level_blueprint.md"
+Step 335: USER_INPUT -> <USER_REQUEST> /teamwork-preview assign each workflow to an agent and ask it to evaluate from 1 to n
+Step 337: write_to_file -> prompt_draft.md"
+Step 344: write_to_file -> prompt_draft.md"
+Step 349: USER_INPUT -> <USER_REQUEST> mention to check specifically for workflow and its routes and translation to low leve
+Step 351: write_to_file -> prompt_draft.md"
+Step 355: USER_INPUT -> <USER_REQUEST> include the 1_ file too. 1st check plan pick a part of it eg 1st part for 1 agent the
+Step 357: write_to_file -> 1_project_concept.md"
+Step 357: write_to_file -> prompt_draft.md"
+Step 362: USER_INPUT -> <USER_REQUEST> the previous prompt is not yet finished check  </USER_REQUEST> <ADDITIONAL_METADATA> 
+Step 364: write_to_file -> prompt_draft.md"
+Step 368: USER_INPUT -> <USER_REQUEST> agents can write new file at temp folder for their memory and toc and maintaining the
+Step 370: write_to_file -> prompt_draft.md"
+Step 374: USER_INPUT -> <USER_REQUEST> after completing once again u do a simple check without the team skill after the task
+Step 379: write_to_file -> prompt_draft.md"
+Step 414: USER_INPUT -> <USER_REQUEST> check outcome did those hallucinate or there are not inconsistencies and can we proce
+Step 420: multi_replace_file_content -> 9_low_level_blueprint.md"
+Step 420: multi_replace_file_content -> 5a_current_iteration_plan.md"
+Step 425: USER_INPUT -> <USER_REQUEST> 1st fix files ur self.  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time 
+Step 427: multi_replace_file_content -> 9_low_level_blueprint.md"
+Step 427: multi_replace_file_content -> 5a_current_iteration_plan.md"
+Step 433: multi_replace_file_content -> 8_low_level_workflow.md"
+Step 438: USER_INPUT -> <USER_REQUEST> all ok right do a quick check </USER_REQUEST> <ADDITIONAL_METADATA> The current local
+Step 440: multi_replace_file_content -> 8_low_level_workflow.md"
+Step 442: USER_INPUT -> <USER_REQUEST> invoke context to plan this process as it seems complex then assign sub agents and fi
+Step 444: write_to_file -> implementation_plan.md"
+Step 448: USER_INPUT -> <USER_REQUEST> have one agent working on the chat history and changes made to the md file approach t
+Step 450: write_to_file -> implementation_plan.md"
+Step 454: USER_INPUT -> <USER_REQUEST> ready the army finaly talk amoung ur selves and get the solution u can generate multi
+Step 456: write_to_file -> master_sync.md"
+Step 458: write_to_file -> master_sync.md"
