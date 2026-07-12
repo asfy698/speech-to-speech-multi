@@ -231,7 +231,7 @@ cover/
 uv.lock
 
 
-teamwork_s2s
+
 tests
 .venv-win
 cache
