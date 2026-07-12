@@ -230,7 +230,7 @@ cover/
 .tox/
 uv.lock
 
-src
+
 teamwork_s2s
 tests
 .venv-win
