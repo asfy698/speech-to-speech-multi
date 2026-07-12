@@ -880,12 +880,18 @@ def get_stt_handler(
     elif module_kwargs.stt == "qwen3-asr":
         from speech_to_speech.STT.qwen3_asr_handler import Qwen3ASRSTTHandler
 
+        setup_kwargs = {
+            "model_name": qwen3_asr_stt_handler_kwargs.qwen3_asr_model_name,
+            "device": qwen3_asr_stt_handler_kwargs.qwen3_asr_device,
+            "dtype": qwen3_asr_stt_handler_kwargs.qwen3_asr_dtype,
+            "language_code": qwen3_asr_stt_handler_kwargs.qwen3_asr_language_code,
+        }
         return with_speculative_turns(
             Qwen3ASRSTTHandler(
                 stop_event,
                 queue_in=spoken_prompt_queue,
                 queue_out=text_prompt_queue,
-                setup_kwargs=vars(qwen3_asr_stt_handler_kwargs),
+                setup_kwargs=setup_kwargs,
             )
         )
     else:

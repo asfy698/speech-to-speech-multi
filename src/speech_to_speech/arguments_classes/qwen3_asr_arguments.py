@@ -16,6 +16,8 @@ class Qwen3ASRSTTHandlerArguments:
         metadata={"help": "Torch dtype for Qwen3 ASR. Options: 'auto', 'float16', 'bfloat16', 'float32'."},
     )
     qwen3_asr_language_code: str = field(
-        default="ta",
-        metadata={"help": "Language code attached to Qwen3 ASR transcriptions. Default is Tamil ('ta')."},
+        default="auto",
+        metadata={
+            "help": "Language hint for Qwen3 ASR. Use 'auto' for model detection; the value is also attached to transcriptions. Default is 'auto'."
+        },
     )

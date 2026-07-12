@@ -26,13 +26,14 @@ class Qwen3ASRSTTHandler(BaseSTTHandler):
         model_name: str = "osmapi/tamil-asr-qwen3",
         device: str = "auto",
         dtype: str | torch.dtype = "auto",
-        language_code: str = "ta",
+        language_code: str = "auto",
         **_: Any,
     ) -> None:
         self.model_name = model_name
         self.device = self._resolve_device(device)
         self.dtype = self._resolve_dtype(dtype)
         self.language_code = language_code
+        self.transcribe_language = self._resolve_language(language_code)
 
         try:
             from qwen_asr import Qwen3ASRModel
@@ -63,6 +64,14 @@ class Qwen3ASRSTTHandler(BaseSTTHandler):
                 return torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
             return None
         return getattr(torch, dtype)
+
+    def _resolve_language(self, language_code: str | None) -> str | None:
+        if language_code is None:
+            return None
+        normalized = language_code.strip()
+        if normalized.lower() in {"", "auto", "none", "null"}:
+            return None
+        return normalized
 
     def warmup(self) -> None:
         try:
@@ -120,7 +129,7 @@ class Qwen3ASRSTTHandler(BaseSTTHandler):
         )
 
     def _transcribe(self, audio: np.ndarray) -> str:
-        result = self.asr.transcribe((audio, PIPELINE_SR), language=self.language_code)
+        result = self.asr.transcribe((audio, PIPELINE_SR), language=self.transcribe_language)
         if isinstance(result, list) and result:
             return str(getattr(result[0], "text", result[0]))
         return ""

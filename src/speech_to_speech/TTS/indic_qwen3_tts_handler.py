@@ -31,7 +31,7 @@ class IndicQwen3TTSHandler(BaseHandler[TTSIn, TTSOut]):
         should_listen: Event,
         model_name: str = "aguken-ai/Qwen3-TTS-0.6B-LoRA-Finetuned-Indic-Multilingual",
         adapter: str = "tamil_female",
-        language: str = "Tamil",
+        language: str = "auto",
         device: str = "cuda",
         dtype: str | torch.dtype = "auto",
         attn_implementation: str = "eager",
@@ -43,7 +43,7 @@ class IndicQwen3TTSHandler(BaseHandler[TTSIn, TTSOut]):
         self.should_listen = should_listen
         self.model_name = model_name
         self.adapter = adapter
-        self.language = language
+        self.language = self._resolve_language(language)
         self.device = self._resolve_device(device)
         self.dtype = self._resolve_dtype(dtype)
         self.attn_implementation = attn_implementation
@@ -103,6 +103,17 @@ class IndicQwen3TTSHandler(BaseHandler[TTSIn, TTSOut]):
         if dtype == "auto":
             return torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16
         return getattr(torch, dtype)
+
+    def _resolve_language(self, language: str | None) -> str | None:
+        if language is None:
+            return None
+        normalized = language.strip().lower()
+        if normalized in {"", "none", "null"}:
+            return None
+        if normalized == "tamil":
+            logger.warning("Qwen3-TTS does not accept language='Tamil'; using language='auto' with the Tamil LoRA adapter.")
+            return "auto"
+        return normalized
 
     def _find_first_file(self, folder: Path, patterns: tuple[str, ...]) -> str | None:
         for pattern in patterns:

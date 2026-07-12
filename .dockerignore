@@ -1,5 +1,8 @@
 tmp
 cache
+cache-dev
+cache-english
+cache-tamil
 .venv
 .git
 .mypy_cache

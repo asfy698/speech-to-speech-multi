@@ -40,8 +40,7 @@ services:
   dev:
     image: speech-to-speech-multi-dev
     depends_on:
-      llama:
-        condition: service_healthy
+      - llama
     build:
       context: .
       dockerfile: Dockerfile.dev
